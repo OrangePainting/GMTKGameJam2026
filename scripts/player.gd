@@ -2,10 +2,10 @@ extends Node2D
 
 const VELOCITY_THRESHOLD := 100.0
 
-@export var max_speed: float = 250.0
+@export var max_speed: float = 350.0
 @export var chase_speed: float = 6.0
 @export var float_up_down: float = 8.0
-@export var float_speed: float = 0.1 # per sec
+@export var float_speed: float = 0.3 # per sec
 @export var appear_time: float = 2.0
 
 @onready var ghost_sprite = %GhostSprite

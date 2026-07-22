@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b6odwl5ldbmdl"]
+
+[ext_resource type="Texture2D" uid="uid://cgwutq6g5i88o" path="res://art/DayNightClock.png" id="1_x4jx1"]
+[ext_resource type="Script" uid="uid://idsdgxkb82gr" path="res://scripts/ui.gd" id="1_yev5y"]
+[ext_resource type="Texture2D" uid="uid://bdd64n6fkpy42" path="res://art/DayNightClockCover.png" id="2_yev5y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jwl2k"]
+radius = 32.06244
+
+[node name="UI" type="Control" unique_id=1307178562]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yev5y")
+
+[node name="DayNightClock" type="Sprite2D" parent="." unique_id=529121992]
+unique_name_in_owner = true
+position = Vector2(1184, 96)
+scale = Vector2(3, 3)
+texture = ExtResource("1_x4jx1")
+
+[node name="MouseMask" type="Area2D" parent="DayNightClock" unique_id=1601640434]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DayNightClock/MouseMask" unique_id=1145006602]
+shape = SubResource("CircleShape2D_jwl2k")
+
+[node name="ClockCover" type="Sprite2D" parent="." unique_id=1008829394]
+position = Vector2(1088, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("2_yev5y")
+centered = false
+
+[connection signal="mouse_entered" from="DayNightClock/MouseMask" to="." method="_on_mouse_mask_mouse_entered"]
+[connection signal="mouse_exited" from="DayNightClock/MouseMask" to="." method="_on_mouse_mask_mouse_exited"]
