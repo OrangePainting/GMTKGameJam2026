@@ -16,10 +16,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yev5y")
 
+[node name="Divider" type="ColorRect" parent="." unique_id=1153933020]
+layout_mode = 0
+offset_left = 1000.0
+offset_right = 1022.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
 [node name="DayNightClock" type="Sprite2D" parent="." unique_id=529121992]
 unique_name_in_owner = true
-position = Vector2(1184, 96)
-scale = Vector2(3, 3)
+position = Vector2(1152, 128)
+scale = Vector2(4, 4)
 texture = ExtResource("1_x4jx1")
 
 [node name="MouseMask" type="Area2D" parent="DayNightClock" unique_id=1601640434]
@@ -29,10 +36,9 @@ unique_name_in_owner = true
 shape = SubResource("CircleShape2D_jwl2k")
 
 [node name="ClockCover" type="Sprite2D" parent="." unique_id=1008829394]
-position = Vector2(1088, 0)
-scale = Vector2(3, 3)
+position = Vector2(1152, 128)
+scale = Vector2(4, 4)
 texture = ExtResource("2_yev5y")
-centered = false
 
 [connection signal="mouse_entered" from="DayNightClock/MouseMask" to="." method="_on_mouse_mask_mouse_entered"]
 [connection signal="mouse_exited" from="DayNightClock/MouseMask" to="." method="_on_mouse_mask_mouse_exited"]

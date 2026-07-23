@@ -11,6 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	day_night_clock.rotation = PI * (TimeManager.in_game_time / TimeManager.max_day_time)
 
+
 func _on_mouse_mask_mouse_entered() -> void:
 	modulate = Color(1, 1, 1, 0.5)
 

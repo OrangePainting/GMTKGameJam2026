@@ -1,0 +1,47 @@
+{
+    "activeFile": "Tilesets/Map1.tmx",
+    "expandedProjectPaths": [
+        ".",
+        "Tilesets"
+    ],
+    "fileStates": {
+        "Tilesets/GB tilesheet 5 colours.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 3
+        },
+        "Tilesets/GBtilesheet5colours.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 0.33
+        },
+        "Tilesets/Map1.tmx": {
+            "scale": 3,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 151.5,
+                "y": 144.99999999999997
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/konda/Godot Projects/GMTKGameJam2026/art/Tilesets",
+    "last.imagePath": "C:/Users/konda/Godot Projects/GMTKGameJam2026/art",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 25,
+    "openFiles": [
+        "Tilesets/Map1.tmx",
+        "Tilesets/GB tilesheet 5 colours.tsx"
+    ],
+    "project": "room_tileset.tiled-project",
+    "recentFiles": [
+        "Tilesets/GB tilesheet 5 colours.tsx",
+        "Tilesets/Map1.tmx",
+        "Tilesets/GBtilesheet5colours.tsx"
+    ],
+    "tileset.lastUsedExportFilter": "Lua files (*.lua)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

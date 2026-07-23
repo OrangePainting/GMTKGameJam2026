@@ -9,6 +9,7 @@ const VELOCITY_THRESHOLD := 100.0
 @export var appear_time: float = 2.0
 
 @onready var ghost_sprite = %GhostSprite
+@onready var interact_area = %InteractArea
 
 var velocity := Vector2.ZERO
 var total_time: float = 0.0
@@ -26,11 +27,13 @@ func ghost_appearing_animation() -> void:
 	t.tween_property(ghost_sprite, "modulate", Color(1.0, 1.0, 1.0, 1.0), appear_time)
 	t.set_ease(Tween.EASE_OUT)
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	move_towards_player(delta)
 	apply_ghost_float(delta)
 	set_animation(velocity.length()) # speed
+
 
 func move_towards_player(delta: float) -> void:
 	var mouse_pos := get_global_mouse_position()
@@ -46,13 +49,23 @@ func move_towards_player(delta: float) -> void:
 
 func apply_ghost_float(delta: float) -> void:
 	total_time += delta
-	ghost_sprite.position = Vector2(
-		sin(total_time * TAU * float_speed * 0.7),
-		sin(total_time * TAU * float_speed)
-	) * float_up_down
+	ghost_sprite.position.y = sin(total_time * TAU * float_speed * 0.7) * float_up_down
+
 
 func set_animation(speed: float):
 	if speed > VELOCITY_THRESHOLD:
 		ghost_sprite.play("movement")
 		ghost_sprite.flip_h = velocity.x < 0.0
 	else: ghost_sprite.play("idle")
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+			attempt_action()
+
+
+func attempt_action() -> void:
+	for area in interact_area.get_overlapping_areas():
+		if area is ActionItem:
+			area.interact(get_parent())
+			return

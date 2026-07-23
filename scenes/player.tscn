@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://727evawbfoyj"]
 
 [ext_resource type="Script" uid="uid://bbd54aotutlds" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://dnb7b3w7qumi2" path="res://art/ghost_action_sprite_sheet.png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://cyn2t1guiwyl4" path="res://art/ghost_idle_spritesheet.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://ddl5os10dqapm" path="res://art/ghost_move_spritesheet.png" id="3_dqkch"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
+atlas = ExtResource("2_dqkch")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+atlas = ExtResource("2_dqkch")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
 atlas = ExtResource("2_qhqgy")
@@ -40,6 +49,17 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jej6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ej7")
+}],
+"loop": 1,
+"name": &"action",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qlg0r")
 }, {
 "duration": 1.0,
@@ -73,6 +93,10 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_li6ia"]
+radius = 44.0
+height = 98.0
+
 [node name="Player" type="Node2D" unique_id=1226793042]
 script = ExtResource("1_g2els")
 
@@ -80,4 +104,10 @@ script = ExtResource("1_g2els")
 unique_name_in_owner = true
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_li6ia")
-animation = &"movement"
+animation = &"action"
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=1710100296]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=738189813]
+shape = SubResource("CapsuleShape2D_li6ia")

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 TimeManager="*uid://d4n4de44x4c0w"
+HappinessManager="*uid://y4gsicowqmeh"
 
 [display]
 
