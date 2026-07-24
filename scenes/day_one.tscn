@@ -238,7 +238,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdaog"]
-size = Vector2(36.800003, 22.800003)
+size = Vector2(36.800003, 27.800003)
 
 [node name="Main" type="Node2D" unique_id=560727074]
 script = ExtResource("1_ssijw")
@@ -380,6 +380,7 @@ shape = SubResource("RectangleShape2D_li6ia")
 position = Vector2(670, 280)
 scale = Vector2(5, 5)
 script = ExtResource("11_lgcte")
+person_path = NodePath("../../Person")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Furniture/Bed" unique_id=1530431108]
 sprite_frames = SubResource("SpriteFrames_jwl2k")
@@ -398,13 +399,38 @@ sprite_frames = SubResource("SpriteFrames_fic7a")
 animation = &"empty"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/Desktop" unique_id=892206988]
-scale = Vector2(0.9999998, 0.9999998)
+position = Vector2(0, 2.5)
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_xdaog")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=901883157]
+visible = false
 color = Color(0.07762883, 0.07762881, 0.07762881, 1)
 
 [node name="UI" parent="." unique_id=1307178562 node_paths=PackedStringArray("main") instance=ExtResource("4_27vry")]
 main = NodePath("..")
 
 [node name="Player" parent="." unique_id=1226793042 instance=ExtResource("3_mqijn")]
+
+[node name="EscapePath" type="Node2D" parent="." unique_id=1979493056]
+
+[node name="Marker1" type="Marker2D" parent="EscapePath" unique_id=1684323014]
+position = Vector2(500, 350)
+
+[node name="Marker2" type="Marker2D" parent="EscapePath" unique_id=1339463377]
+position = Vector2(150, 540)
+
+[node name="Marker3" type="Marker2D" parent="EscapePath" unique_id=790136768]
+position = Vector2(280, 540)
+
+[node name="Marker4" type="Marker2D" parent="EscapePath" unique_id=979971754]
+position = Vector2(280, 670)
+
+[node name="Marker5" type="Marker2D" parent="EscapePath" unique_id=404974656]
+position = Vector2(670, 670)
+
+[node name="Marker6" type="Marker2D" parent="EscapePath" unique_id=1960908705]
+position = Vector2(840, 540)
+
+[node name="Marker7" type="Marker2D" parent="EscapePath" unique_id=796918213]
+position = Vector2(1060, 600)

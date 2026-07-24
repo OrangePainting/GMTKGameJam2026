@@ -1,24 +1,106 @@
 extends Node2D
 
+
+signal walk_finished
+signal walk_failed
+signal returned_to_bed
+
 @onready var player_sprite = $AnimatedSprite2D
+
+@export var waypoints_manager: NodePath
 
 var faced_direction := Vector2.RIGHT
 var player_tween: Tween
 var player_speed := 10.0
 
+var start_position: Vector2
+var waypoints: Array[Vector2] = []
+var current_step := -1
+var is_walking := false
+var should_fail := false
+var walk_num := 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	start_position = position
 	update_animation(false)
 
+func begin_walk() -> void:
+	if is_walking: return
+	store_waypoints()
+	if waypoints.is_empty(): return
+	is_walking = true
+	should_fail = false
+	current_step = 0
+	walk_num += 1
+	walk_step(walk_num)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
+func fail_walk() -> void:
+	if not is_walking: return
+	should_fail = true
+
+
+func check_failure(index: int) -> bool: # override per waypoint later
+	return true # passed
+
+
+func store_waypoints() -> void:
+	waypoints.clear()
+	if waypoints_manager.is_empty(): return
+	var manager_node := get_node(waypoints_manager)
+	for child in manager_node.get_children():
+		if child is Node2D: waypoints.append(to_local(child.global_position))
+
 
 func move_towards(pos: Vector2) -> void:
 	if player_tween: player_tween.kill()
 	player_tween = create_tween()
 	player_tween.tween_property(self, "position", pos, player_speed * (pos - position).length())
+
+
+func walk_step(index: int) -> void:
+	if index != walk_num: return
+	if should_fail:
+		start_return_to_bed(index)
+		return
+	if current_step >= waypoints.size():
+		finish_walk()
+		return
+	
+	var goal_pos: Vector2 = waypoints[current_step]
+	face_and_move(goal_pos)
+	await player_tween.finished
+	if index != walk_num: return
+	
+	if should_fail or check_failure(current_step):
+		start_return_to_bed(index)
+	
+	current_step += 1
+	walk_step(index)
+
+func start_return_to_bed(index: int) -> void:
+	walk_failed.emit()
+	face_and_move(start_position)
+	await player_tween.finished
+	if index != walk_num: return
+	is_walking = false
+	should_fail = false
+	update_animation(false)
+	returned_to_bed.emit()
+
+
+func finish_walk() -> void:
+	is_walking = false
+	update_animation(false)
+	walk_finished.emit()
+
+
+func face_and_move(goal: Vector2) -> void:
+	faced_direction = goal - position
+	update_animation(true)
+	move_towards(goal)
 
 func update_animation(is_moving: bool) -> void:
 	var dir_string = get_direction_string(faced_direction)

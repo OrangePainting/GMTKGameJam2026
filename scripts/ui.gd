@@ -6,8 +6,8 @@ extends Control
 @onready var news_label = %NewsInfo
 
 var news_text = "DIRE NEWS:
-METEOR WILL
-STRIKE EARTH"
+METEOR STRIKE
+AT YOUR HOUSE"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
