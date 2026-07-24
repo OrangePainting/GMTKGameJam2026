@@ -44,9 +44,9 @@ texture = ExtResource("2_yev5y")
 [node name="NewsInfo" type="Label" parent="." unique_id=1711542308]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 8.0
+offset_left = 12.0
 offset_top = 128.0
-offset_right = 332.0
+offset_right = 336.0
 offset_bottom = 266.0
 theme_override_colors/font_color = Color(0.5254902, 0.7529412, 0.42352942, 1)
 theme_override_fonts/font = ExtResource("4_gdt2y")

@@ -5,6 +5,9 @@ extends Control
 @onready var day_night_clock = %DayNightClock
 @onready var news_label = %NewsInfo
 
+var news_text = "DIRE NEWS:
+METEOR WILL
+STRIKE EARTH"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,11 +15,16 @@ func _ready() -> void:
 	main.show_text.connect(display_text_animation)
 
 func display_text_animation() -> void:
+	news_label.text = ""
 	news_label.show()
+	create_tween().tween_method(update_news_label, 0, len(news_text), 10.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	day_night_clock.rotation = PI * (TimeManager.in_game_time / TimeManager.max_day_time)
+
+func update_news_label(index) -> void:
+	news_label.text = news_text.substr(0, index)
 
 
 func _on_mouse_mask_mouse_entered() -> void:
