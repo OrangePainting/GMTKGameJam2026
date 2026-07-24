@@ -4,7 +4,7 @@ extends ActionItem
 # TV turns on, and then while the antenna is being tuned, the static animation plays.
 # Then, the remote needs to be found, and once the remote is interacted with, the news plays.
 
-enum STATE { OFF, STATIC, NEWS }
+enum STATE { OFF, STATIC, CYCLING, NEWS }
 
 signal state_changed(new_state: STATE)
 signal news_found
@@ -49,11 +49,12 @@ func set_state(new_state: STATE) -> void:
 		STATE.OFF: screen.play(&"off")
 		STATE.STATIC: screen.play(&"static")
 		STATE.NEWS: screen.play(&"talking")
+		STATE.CYCLING: screen.play(&"cycling")
 
 
 func _on_interact(player: Node) -> void: # override in sub classes
 	match state:
-		STATE.OFF: pass
+		STATE.OFF: set_on_off(true)
 		STATE.STATIC:
 			if not tuned: open_antenna_tuning()
 			else: cycle_channel()
@@ -79,7 +80,7 @@ func cycle_channel() -> void:
 	if current_channel == news_channel:
 		set_state(STATE.NEWS)
 		news_found.emit()
-		HappinessManager.add_happiness(1)
+		#HappinessManager.add_happiness(1)
 
 
 func _ready() -> void:

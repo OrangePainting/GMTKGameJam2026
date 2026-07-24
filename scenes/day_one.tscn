@@ -4,13 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://chgrtwsf8rpe5" path="res://art/Tilesets/Map1Empty.png" id="2_ssijw"]
 [ext_resource type="Texture2D" uid="uid://b7shbcix874oy" path="res://art/light_big.png" id="3_27vry"]
 [ext_resource type="Script" uid="uid://c5q57f6wrb36l" path="res://scripts/light_source.gd" id="3_f1g2u"]
+[ext_resource type="PackedScene" uid="uid://lpc0kjaiwdh1" path="res://scenes/person.tscn" id="3_kqitr"]
 [ext_resource type="PackedScene" uid="uid://727evawbfoyj" path="res://scenes/player.tscn" id="3_mqijn"]
 [ext_resource type="Texture2D" uid="uid://c3oyk28kyogl7" path="res://art/TVSpriteSheet.png" id="3_xxuho"]
 [ext_resource type="PackedScene" uid="uid://b6odwl5ldbmdl" path="res://scenes/ui.tscn" id="4_27vry"]
 [ext_resource type="Texture2D" uid="uid://dt8a2drp6172c" path="res://art/light_small.png" id="4_gsec4"]
 [ext_resource type="Script" uid="uid://dts2xb5nqlhta" path="res://scripts/tv.gd" id="4_mqijn"]
+[ext_resource type="PackedScene" uid="uid://d3kwd1sqmnc0e" path="res://scenes/tuner.tscn" id="7_ler3f"]
 [ext_resource type="Texture2D" uid="uid://c5kpatqxd570d" path="res://art/tv_remote.png" id="8_022v7"]
 [ext_resource type="Script" uid="uid://gmg4h3p2nw4e" path="res://scripts/remote.gd" id="8_tjpqy"]
+[ext_resource type="Script" uid="uid://b0pxuy7voyep5" path="res://scripts/bed.gd" id="11_lgcte"]
+[ext_resource type="Texture2D" uid="uid://dnx347eg6rm0g" path="res://art/8-Directional Gameboy Character Template/bed_sprite_sheet.png" id="12_kqitr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_li6ia"]
 radius = 8.400009
@@ -27,6 +31,14 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gsec4"]
 radius = 6.4000015
 height = 23.199997
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqitr"]
+atlas = ExtResource("3_xxuho")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghfhp"]
+atlas = ExtResource("3_xxuho")
+region = Rect2(0, 16, 32, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mqijn"]
 atlas = ExtResource("3_xxuho")
@@ -68,6 +80,17 @@ region = Rect2(0, 128, 32, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_kqitr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghfhp")
+}],
+"loop": 1,
+"name": &"cycling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mqijn")
 }],
 "loop": 1,
@@ -84,7 +107,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_f1g2u")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"startup",
 "speed": 5.0
 }, {
@@ -119,6 +142,60 @@ size = Vector2(25, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_li6ia"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_eamk0"]
+atlas = ExtResource("12_kqitr")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7byi"]
+atlas = ExtResource("12_kqitr")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31rf2"]
+atlas = ExtResource("12_kqitr")
+region = Rect2(0, 96, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h3sx"]
+atlas = ExtResource("12_kqitr")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwl2k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eamk0")
+}],
+"loop": 1,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7byi")
+}],
+"loop": 1,
+"name": &"no_sheet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31rf2")
+}],
+"loop": 1,
+"name": &"sheet_asleep",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h3sx")
+}],
+"loop": 1,
+"name": &"sheet_awake",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fic7a"]
+size = Vector2(20, 30)
+
 [node name="Main" type="Node2D" unique_id=560727074]
 script = ExtResource("1_ssijw")
 
@@ -126,6 +203,10 @@ script = ExtResource("1_ssijw")
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("2_ssijw")
 centered = false
+
+[node name="Person" parent="." unique_id=526698822 instance=ExtResource("3_kqitr")]
+position = Vector2(670, 280)
+scale = Vector2(5, 5)
 
 [node name="Furniture" type="Node2D" parent="." unique_id=1667566550]
 
@@ -228,10 +309,11 @@ texture = SubResource("GradientTexture2D_tjpqy")
 position = Vector2(140, 320)
 scale = Vector2(5, 5)
 script = ExtResource("4_mqijn")
+antenna_tuning_scene = ExtResource("7_ler3f")
 
 [node name="Screen" type="AnimatedSprite2D" parent="Furniture/TV" unique_id=112524717]
 sprite_frames = SubResource("SpriteFrames_li6ia")
-animation = &"off"
+animation = &"cycling"
 
 [node name="TuningLayer" type="CanvasLayer" parent="Furniture/TV" unique_id=1230966836]
 
@@ -250,7 +332,20 @@ texture = ExtResource("8_022v7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/Remote" unique_id=1198685397]
 shape = SubResource("RectangleShape2D_li6ia")
 
+[node name="Bed" type="Area2D" parent="Furniture" unique_id=1429208719]
+position = Vector2(670, 280)
+scale = Vector2(5, 5)
+script = ExtResource("11_lgcte")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Furniture/Bed" unique_id=1530431108]
+sprite_frames = SubResource("SpriteFrames_jwl2k")
+animation = &"sheet_awake"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/Bed" unique_id=747662823]
+shape = SubResource("RectangleShape2D_fic7a")
+
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=901883157]
+visible = false
 color = Color(0.07762883, 0.07762881, 0.07762881, 1)
 
 [node name="UI" parent="." unique_id=1307178562 instance=ExtResource("4_27vry")]
