@@ -345,9 +345,9 @@ animation = &"sheet_awake"
 shape = SubResource("RectangleShape2D_fic7a")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=901883157]
-visible = false
 color = Color(0.07762883, 0.07762881, 0.07762881, 1)
 
-[node name="UI" parent="." unique_id=1307178562 instance=ExtResource("4_27vry")]
+[node name="UI" parent="." unique_id=1307178562 node_paths=PackedStringArray("main") instance=ExtResource("4_27vry")]
+main = NodePath("..")
 
 [node name="Player" parent="." unique_id=1226793042 instance=ExtResource("3_mqijn")]

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cgwutq6g5i88o" path="res://art/DayNightClock.png" id="1_x4jx1"]
 [ext_resource type="Script" uid="uid://idsdgxkb82gr" path="res://scripts/ui.gd" id="1_yev5y"]
 [ext_resource type="Texture2D" uid="uid://bdd64n6fkpy42" path="res://art/DayNightClockCover.png" id="2_yev5y"]
+[ext_resource type="FontFile" uid="uid://cxcvpkmpnjf2" path="res://art/text_font.otf" id="4_gdt2y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jwl2k"]
 radius = 32.06244
@@ -39,6 +40,20 @@ shape = SubResource("CircleShape2D_jwl2k")
 position = Vector2(1152, 128)
 scale = Vector2(4, 4)
 texture = ExtResource("2_yev5y")
+
+[node name="NewsInfo" type="Label" parent="." unique_id=1711542308]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 332.0
+offset_bottom = 266.0
+theme_override_colors/font_color = Color(0.5254902, 0.7529412, 0.42352942, 1)
+theme_override_fonts/font = ExtResource("4_gdt2y")
+theme_override_font_sizes/font_size = 48
+text = "DIRE NEWS:
+METEOR WILL
+STRIKE EARTH"
 
 [connection signal="mouse_entered" from="DayNightClock/MouseMask" to="." method="_on_mouse_mask_mouse_entered"]
 [connection signal="mouse_exited" from="DayNightClock/MouseMask" to="." method="_on_mouse_mask_mouse_exited"]

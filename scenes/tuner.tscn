@@ -6,5 +6,8 @@
 [node name="Tuner" type="Node2D" unique_id=2123352701]
 script = ExtResource("1_p3628")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1818714613]
+[node name="Cursor" type="Sprite2D" parent="." unique_id=1818714613]
+texture = ExtResource("2_8724q")
+
+[node name="Target" type="Sprite2D" parent="." unique_id=226812880]
 texture = ExtResource("2_8724q")

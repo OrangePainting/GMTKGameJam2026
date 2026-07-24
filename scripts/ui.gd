@@ -1,11 +1,18 @@
 extends Control
 
+@export var main: Node2D
+
 @onready var day_night_clock = %DayNightClock
+@onready var news_label = %NewsInfo
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	news_label.hide()
+	main.show_text.connect(display_text_animation)
 
+func display_text_animation() -> void:
+	news_label.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

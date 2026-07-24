@@ -14,6 +14,7 @@ signal news_found
 @export var channel_num: int = 5
 
 
+
 var state := STATE.OFF
 var is_on := false
 var remote_found := false
@@ -38,6 +39,7 @@ func set_remote_found(value: bool) -> void:
 func refresh_state() -> void:
 	if state == STATE.NEWS: return
 	if not is_on: set_state(STATE.OFF)
+	if tuned: set_state(STATE.CYCLING)
 	else: set_state(STATE.STATIC)
 
 
@@ -55,10 +57,9 @@ func set_state(new_state: STATE) -> void:
 func _on_interact(player: Node) -> void: # override in sub classes
 	match state:
 		STATE.OFF: set_on_off(true)
-		STATE.STATIC:
-			if not tuned: open_antenna_tuning()
-			else: cycle_channel()
+		STATE.STATIC: if not tuned: open_antenna_tuning()
 		STATE.NEWS: pass
+		STATE.CYCLING: cycle_channel()
 
 
 func open_antenna_tuning() -> void:
