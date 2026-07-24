@@ -17,7 +17,9 @@ func _ready() -> void:
 func display_text_animation() -> void:
 	news_label.text = ""
 	news_label.show()
-	create_tween().tween_method(update_news_label, 0, len(news_text), 10.0)
+	create_tween().tween_method(update_news_label, 0, len(news_text), 8.0)
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
