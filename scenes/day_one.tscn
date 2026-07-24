@@ -251,6 +251,9 @@ centered = false
 [node name="Person" parent="." unique_id=526698822 instance=ExtResource("3_kqitr")]
 position = Vector2(670, 280)
 scale = Vector2(5, 5)
+tv_path = NodePath("../Furniture/TV")
+light_1_path = NodePath("../Furniture/BigLight")
+waypoints_manager = NodePath("../EscapePath")
 
 [node name="Furniture" type="Node2D" parent="." unique_id=1667566550]
 
@@ -404,7 +407,6 @@ scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_xdaog")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=901883157]
-visible = false
 color = Color(0.07762883, 0.07762881, 0.07762881, 1)
 
 [node name="UI" parent="." unique_id=1307178562 node_paths=PackedStringArray("main") instance=ExtResource("4_27vry")]
