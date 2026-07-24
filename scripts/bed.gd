@@ -15,6 +15,7 @@ func change_state(new_state: STATE) -> void:
 	state = new_state
 	refresh_sprite()
 
+
 func refresh_sprite() -> void:
 	match state:
 		STATE.OPEN: bed_sprite.play(&"empty")
