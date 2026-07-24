@@ -68,4 +68,5 @@ func attempt_action() -> void:
 	for area in interact_area.get_overlapping_areas():
 		if area is ActionItem:
 			area.interact(get_parent())
+			print("test")
 			return
