@@ -8,17 +8,22 @@ signal returned_to_bed
 @onready var player_sprite = $AnimatedSprite2D
 
 @export var tv_path: NodePath
-@export var light_1_path: NodePath
+@export var desktop_path: NodePath
+@export var light_paths: Array[NodePath] = []
 
 @export var waypoints_manager: NodePath
 
+var waypoint_facings: Array[Vector2] = \
+	[Vector2.UP, Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.UP, Vector2.RIGHT, Vector2.RIGHT]
+
 
 @onready var tv: TV = get_node_or_null(tv_path)
-@onready var light_1: LightSource = get_node_or_null(light_1_path)
+@onready var desktop: Desktop = get_node_or_null(desktop_path)
+var lights : Array[LightSource] = []
 
 var faced_direction := Vector2.RIGHT
 var player_tween: Tween
-var player_speed := 50.0
+var player_speed := 80.0
 
 var start_position: Vector2
 var waypoints: Array[Vector2] = []
@@ -30,10 +35,14 @@ var walk_num := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for l in light_paths:
+		if get_node_or_null(l) as LightSource: lights.append(get_node_or_null(l) as LightSource)
+	hide()
 	start_position = global_position
 	update_animation(false)
 
 func begin_walk() -> void:
+	show()
 	if is_walking: return
 	store_waypoints()
 	if waypoints.is_empty(): return
@@ -52,10 +61,17 @@ func fail_walk() -> void:
 func check_failure(index: int) -> bool: # true = failed, false = passed
 	print(index)
 	match index:
-		2: return tv and tv.state == TV.STATE.OFF
-		4: return light_1 and not light_1.is_on
+		0: return desktop and desktop.state != Desktop.STATE.DESKTOP
+		1: return not light_on(1)
+		2: return not light_on(2)
+		3: return not light_on(0)
+		4: return not light_on(3)
+		5: return not light_on(4)
+		6: return tv and tv.state == TV.STATE.OFF
 		_: return false # passed
 
+func light_on(index: int) -> bool:
+	return index < len(lights) and lights[index].is_on
 
 func store_waypoints() -> void:
 	waypoints.clear()
@@ -89,6 +105,10 @@ func walk_step(index: int) -> void:
 		start_return_to_bed(index)
 		return
 	
+	player_sprite.play("walk_" + get_direction_string(waypoint_facings[current_step]))
+	player_sprite.frame = 0
+	player_sprite.stop()
+	await get_tree().create_timer(1).timeout
 	current_step += 1
 	walk_step(index)
 
@@ -101,6 +121,7 @@ func start_return_to_bed(index: int) -> void:
 	should_fail = false
 	update_animation(false)
 	returned_to_bed.emit()
+	hide()
 
 
 func finish_walk() -> void:

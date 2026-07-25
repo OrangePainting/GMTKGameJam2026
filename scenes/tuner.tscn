@@ -4,13 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://cwfkixvfvcagj" path="res://art/tuner_cursor.png" id="2_bgwl5"]
 [ext_resource type="Texture2D" uid="uid://dn3ttfx4ahbmw" path="res://art/MinigameBackground.png" id="2_flvaf"]
 [ext_resource type="Texture2D" uid="uid://bi1iyj4uekbfb" path="res://art/tuner_target.png" id="3_flvaf"]
+[ext_resource type="Texture2D" uid="uid://66da72hu4tg0" path="res://art/arrow.png" id="5_pdvpo"]
+[ext_resource type="Texture2D" uid="uid://i4ux2f1c14jr" path="res://art/arrow_pressed.png" id="6_xrd3m"]
 
 [node name="Tuner" type="Node2D" unique_id=2123352701]
 script = ExtResource("1_p3628")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1613530]
-position = Vector2(110, 110)
-scale = Vector2(2.7, 3.345)
+position = Vector2(220, 200)
+scale = Vector2(2, 2)
 texture = ExtResource("2_flvaf")
 centered = false
 
@@ -21,3 +23,46 @@ texture = ExtResource("2_bgwl5")
 [node name="Target" type="Sprite2D" parent="." unique_id=226812880]
 scale = Vector2(5, 5)
 texture = ExtResource("3_flvaf")
+
+[node name="DownButton" type="TextureButton" parent="." unique_id=833827367]
+offset_left = 575.99994
+offset_top = 527.99994
+offset_right = 591.99994
+offset_bottom = 543.99994
+scale = Vector2(5, 5)
+texture_normal = ExtResource("5_pdvpo")
+texture_pressed = ExtResource("6_xrd3m")
+metadata/_edit_use_anchors_ = true
+
+[node name="RightButton" type="TextureButton" parent="." unique_id=1825844356]
+offset_left = 1045.0
+offset_top = 391.99994
+offset_right = 1061.0
+offset_bottom = 407.99994
+rotation = 4.712389
+scale = Vector2(5, 5)
+texture_normal = ExtResource("5_pdvpo")
+texture_pressed = ExtResource("6_xrd3m")
+metadata/_edit_use_anchors_ = true
+
+[node name="UpButton" type="TextureButton" parent="." unique_id=237526819]
+offset_left = 656.0
+offset_top = 183.99994
+offset_right = 672.0
+offset_bottom = 199.99994
+rotation = 3.1415927
+scale = Vector2(5, 5)
+texture_normal = ExtResource("5_pdvpo")
+texture_pressed = ExtResource("6_xrd3m")
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftButton" type="TextureButton" parent="." unique_id=508429066]
+offset_left = 200.0
+offset_top = 311.99994
+offset_right = 216.00002
+offset_bottom = 327.99994
+rotation = 1.5707964
+scale = Vector2(5, 5)
+texture_normal = ExtResource("5_pdvpo")
+texture_pressed = ExtResource("6_xrd3m")
+metadata/_edit_use_anchors_ = true

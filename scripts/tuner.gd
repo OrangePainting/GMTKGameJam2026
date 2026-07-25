@@ -6,7 +6,7 @@ signal tuned
 @export var move_speed : float = 220.0
 @export var radius: float = 25.0
 @export var hold_time: float = 0.4
-@export var bounds_area: Rect2 = Rect2(140, 100, 1000, 520)
+@export var bounds_area: Rect2 = Rect2(220, 200, 800, 300)
 
 @onready var cursor: Sprite2D = $Cursor
 @onready var target: Sprite2D = $Target

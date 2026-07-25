@@ -6,6 +6,8 @@ extends ActionItem
 @export var light_radius: float = 180.0
 @export var tween_duration: float = 0.4
 
+static var current_light: LightSource = null
+
 var is_on := false
 
 @onready var tv: TV = get_node(tv_path)
@@ -19,14 +21,24 @@ func _ready() -> void:
 	light.energy = 0.0
 	light.texture_scale = 0.0
 
+
 func _on_interact(player: Node) -> void:
-	is_on = not is_on
-	# Now light source so not necessary
-	#sprite.frame = 1 if is_on else 0
-	#tv.set_on_off(is_on)
-	
-	if is_on: change_lighting(light_energy, light_radius)
-	else: change_lighting(0, 0)
+	if is_on: turn_off()
+	else: turn_on()
+
+
+func turn_on() -> void:
+	if current_light and current_light != self: current_light.turn_off()
+	is_on = true
+	current_light = self
+	change_lighting(light_energy, light_radius)
+
+
+func turn_off() -> void:
+	is_on = false
+	if current_light == self: current_light = null
+	change_lighting(0, 0)
+
 
 func change_lighting(new_energy: float, new_scale: float) -> void:
 	if tween: tween.kill()

@@ -7,7 +7,7 @@ extends Control
 
 var news_text = "DIRE NEWS:
 METEOR STRIKE
-AT YOUR HOUSE"
+AT YOUR HOUSE!"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

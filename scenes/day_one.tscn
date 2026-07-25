@@ -248,13 +248,6 @@ scale = Vector2(4.5, 4.5)
 texture = ExtResource("2_ssijw")
 centered = false
 
-[node name="Person" parent="." unique_id=526698822 instance=ExtResource("3_kqitr")]
-position = Vector2(670, 280)
-scale = Vector2(5, 5)
-tv_path = NodePath("../Furniture/TV")
-light_1_path = NodePath("../Furniture/BigLight")
-waypoints_manager = NodePath("../EscapePath")
-
 [node name="Furniture" type="Node2D" parent="." unique_id=1667566550]
 
 [node name="BigLight" type="Area2D" parent="Furniture" unique_id=563035012]
@@ -406,6 +399,14 @@ position = Vector2(0, 2.5)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_xdaog")
 
+[node name="Person" parent="." unique_id=526698822 instance=ExtResource("3_kqitr")]
+position = Vector2(670, 280)
+scale = Vector2(5, 5)
+tv_path = NodePath("../Furniture/TV")
+desktop_path = NodePath("../Furniture/Desktop")
+light_paths = Array[NodePath]([NodePath("../Furniture/BigLight"), NodePath("../Furniture/BigLight2"), NodePath("../Furniture/BigLight3"), NodePath("../Furniture/SmallLight"), NodePath("../Furniture/SmallLight2")])
+waypoints_manager = NodePath("../EscapePath")
+
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=901883157]
 color = Color(0.07762883, 0.07762881, 0.07762881, 1)
 
@@ -417,7 +418,7 @@ main = NodePath("..")
 [node name="EscapePath" type="Node2D" parent="." unique_id=1979493056]
 
 [node name="Marker1" type="Marker2D" parent="EscapePath" unique_id=1684323014]
-position = Vector2(500, 350)
+position = Vector2(500, 300)
 
 [node name="Marker2" type="Marker2D" parent="EscapePath" unique_id=1339463377]
 position = Vector2(150, 540)
