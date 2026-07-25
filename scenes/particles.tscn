@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b6samsxgbrfs0"]
+
+[ext_resource type="Material" uid="uid://ckeo8qqesgujl" path="res://particle_material.tres" id="1_lrx72"]
+
+[node name="Particles" type="GPUParticles2D" unique_id=547658916]
+z_index = 1
+amount = 80
+lifetime = 5.0
+process_material = ExtResource("1_lrx72")

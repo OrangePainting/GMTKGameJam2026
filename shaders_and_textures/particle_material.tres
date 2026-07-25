@@ -1,0 +1,14 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://ckeo8qqesgujl"]
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(640, 360, 1)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 10.0
+initial_velocity_max = 35.0
+gravity = Vector3(0, 0, 0)
+scale_max = 3.0
+color = Color(0.12941177, 0.25490198, 0.22745098, 1)

@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://togdknn8t8e1"]
+
+[ext_resource type="Script" uid="uid://bienwycn5huhu" path="res://scripts/title_screen.gd" id="1_e54dn"]
+[ext_resource type="FontFile" uid="uid://cxcvpkmpnjf2" path="res://art/text_font.otf" id="1_fgkus"]
+[ext_resource type="Texture2D" uid="uid://g5i6q8cwomtl" path="res://art/UpgradeBackground.png" id="2_s4lrb"]
+[ext_resource type="Material" uid="uid://ckeo8qqesgujl" path="res://shaders_and_textures/particle_material.tres" id="3_e54dn"]
+[ext_resource type="PackedScene" uid="uid://b6samsxgbrfs0" path="res://scenes/particles.tscn" id="3_mgrm8"]
+
+[node name="TitleScreen" type="Control" unique_id=161648729]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e54dn")
+
+[node name="Particles" parent="." unique_id=547658916 instance=ExtResource("3_mgrm8")]
+position = Vector2(500, 360)
+process_material = ExtResource("3_e54dn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1694847328]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25490198, 0.49019608, 0.25490198, 1)
+
+[node name="TitleLabel" type="Label" parent="." unique_id=555383136]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 100.0
+offset_right = 21.0
+offset_bottom = 123.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.12941177, 0.25490198, 0.22745098, 1)
+theme_override_fonts/font = ExtResource("1_fgkus")
+theme_override_font_sizes/font_size = 128
+text = "GHOST BOY 
+ADVANCE!"
+horizontal_alignment = 1
+
+[node name="StartButton" type="TextureButton" parent="." unique_id=304750331]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 400.0
+offset_right = 700.0
+offset_bottom = 550.0
+pivot_offset = Vector2(200, 75)
+texture_normal = ExtResource("2_s4lrb")
+texture_pressed = ExtResource("2_s4lrb")
+
+[node name="PlayLabel" type="Label" parent="StartButton" unique_id=1737845052]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.0
+offset_top = 20.0
+offset_right = 114.0
+offset_bottom = 137.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_fgkus")
+theme_override_font_sizes/font_size = 128
+text = "Play"
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="mouse_exited" from="StartButton" to="." method="_on_start_button_mouse_exited"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

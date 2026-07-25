@@ -15,10 +15,10 @@
         },
         "Tilesets/Map1.tmx": {
             "scale": 3,
-            "selectedLayer": 5,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 151.5,
-                "y": 144.99999999999997
+                "x": 111.66666666666664,
+                "y": 111.16666666666669
             }
         }
     },

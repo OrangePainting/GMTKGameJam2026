@@ -3,8 +3,13 @@ extends ActionItem
 
 enum STATE { BOXES, EMPTY, DESKTOP }
 
+@export var password_minigame_scnee: PackedScene
+
 var state: STATE = STATE.BOXES
+var password_solved := false
+
 @onready var desktop_sprite = $Sprite
+@onready var minigame_layer = $MinigameLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,7 +26,16 @@ func change_state(new_state: STATE) -> void:
 	refresh_sprite()
 
 func play_password_minigame() -> void:
-	pass
+	if password_solved: return
+	if not password_minigame_scnee: return
+	var minigame: Node = password_minigame_scnee.instantiate()
+	minigame_layer.add_child(minigame)
+	minigame.unlocked.connect(on_password_unlocked.bind(minigame))
+
+func on_password_unlocked(minigame: Node) -> void:
+	password_solved = true
+	minigame.queue_free()
+	# show password trigger
 
 func refresh_sprite() -> void:
 	match state:

@@ -28,10 +28,10 @@ func _process(delta: float) -> void:
 func update_news_label(index) -> void:
 	news_label.text = news_text.substr(0, index)
 
-
-func _on_mouse_mask_mouse_entered() -> void:
-	modulate = Color(1, 1, 1, 0.5)
-
-
-func _on_mouse_mask_mouse_exited() -> void:
-	modulate = Color(1, 1, 1, 1)
+#
+#func _on_mouse_mask_mouse_entered() -> void:
+	#modulate = Color(1, 1, 1, 0.5)
+#
+#
+#func _on_mouse_mask_mouse_exited() -> void:
+	#modulate = Color(1, 1, 1, 1)

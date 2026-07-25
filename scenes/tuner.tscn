@@ -10,11 +10,14 @@
 [node name="Tuner" type="Node2D" unique_id=2123352701]
 script = ExtResource("1_p3628")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=1613530]
-position = Vector2(220, 200)
+[node name="Background" type="TextureRect" parent="." unique_id=143197107]
+offset_left = 102.0
+offset_top = 200.0
+offset_right = 102.0
+offset_bottom = 200.0
 scale = Vector2(2, 2)
+mouse_filter = 0
 texture = ExtResource("2_flvaf")
-centered = false
 
 [node name="Cursor" type="Sprite2D" parent="." unique_id=1818714613]
 scale = Vector2(5, 5)
@@ -25,19 +28,19 @@ scale = Vector2(5, 5)
 texture = ExtResource("3_flvaf")
 
 [node name="DownButton" type="TextureButton" parent="." unique_id=833827367]
-offset_left = 575.99994
-offset_top = 527.99994
-offset_right = 591.99994
-offset_bottom = 543.99994
+offset_left = 463.99997
+offset_top = 503.99994
+offset_right = 479.99997
+offset_bottom = 519.99994
 scale = Vector2(5, 5)
 texture_normal = ExtResource("5_pdvpo")
 texture_pressed = ExtResource("6_xrd3m")
 metadata/_edit_use_anchors_ = true
 
 [node name="RightButton" type="TextureButton" parent="." unique_id=1825844356]
-offset_left = 1045.0
+offset_left = 909.0
 offset_top = 391.99994
-offset_right = 1061.0
+offset_right = 925.0
 offset_bottom = 407.99994
 rotation = 4.712389
 scale = Vector2(5, 5)
@@ -46,10 +49,10 @@ texture_pressed = ExtResource("6_xrd3m")
 metadata/_edit_use_anchors_ = true
 
 [node name="UpButton" type="TextureButton" parent="." unique_id=237526819]
-offset_left = 656.0
-offset_top = 183.99994
-offset_right = 672.0
-offset_bottom = 199.99994
+offset_left = 544.0
+offset_top = 199.99994
+offset_right = 560.0
+offset_bottom = 215.99994
 rotation = 3.1415927
 scale = Vector2(5, 5)
 texture_normal = ExtResource("5_pdvpo")
@@ -57,10 +60,10 @@ texture_pressed = ExtResource("6_xrd3m")
 metadata/_edit_use_anchors_ = true
 
 [node name="LeftButton" type="TextureButton" parent="." unique_id=508429066]
-offset_left = 200.0
-offset_top = 311.99994
-offset_right = 216.00002
-offset_bottom = 327.99994
+offset_left = 96.000015
+offset_top = 311.99997
+offset_right = 112.00002
+offset_bottom = 327.99997
 rotation = 1.5707964
 scale = Vector2(5, 5)
 texture_normal = ExtResource("5_pdvpo")

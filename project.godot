@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTKGameJam2026"
-run/main_scene="uid://ya3oukm6222y"
+run/main_scene="uid://togdknn8t8e1"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,9 +22,12 @@ HappinessManager="*uid://y4gsicowqmeh"
 
 [display]
 
-window/size/viewport_width=1280
+window/size/viewport_width=1000
 window/size/viewport_height=720
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="uid://vyxbcsaykuug"
+mouse_cursor/custom_image_hotspot=Vector2(40, 40)
+mouse_cursor/tooltip_position_offset=Vector2(0, 0)
 
 [editor_plugins]
 

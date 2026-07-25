@@ -14,7 +14,7 @@ signal returned_to_bed
 @export var waypoints_manager: NodePath
 
 var waypoint_facings: Array[Vector2] = \
-	[Vector2.UP, Vector2.UP, Vector2.RIGHT, Vector2.DOWN, Vector2.UP, Vector2.RIGHT, Vector2.RIGHT]
+	[Vector2.UP, Vector2.UP, Vector2.UP, Vector2.UP, Vector2.UP, Vector2.RIGHT, Vector2.RIGHT]
 
 
 @onready var tv: TV = get_node_or_null(tv_path)
@@ -58,20 +58,20 @@ func fail_walk() -> void:
 	should_fail = true
 
 
-func check_failure(index: int) -> bool: # true = failed, false = passed
+func check_failure(index: int) -> ActionItem: # true = failed, false = passed
 	print(index)
 	match index:
-		0: return desktop and desktop.state != Desktop.STATE.DESKTOP
-		1: return not light_on(1)
-		2: return not light_on(2)
-		3: return not light_on(0)
-		4: return not light_on(3)
-		5: return not light_on(4)
-		6: return tv and tv.state == TV.STATE.OFF
-		_: return false # passed
+		0: return desktop if desktop and desktop.state != Desktop.STATE.DESKTOP else null
+		1: return light_on(1)
+		2: return tv if tv and tv.state == TV.STATE.OFF else null
+		3: return light_on(3)
+		4: return light_on(0)
+		5: return light_on(4)
+		_: return null # passed
 
-func light_on(index: int) -> bool:
-	return index < len(lights) and lights[index].is_on
+func light_on(index: int) -> ActionItem:
+	if index < len(lights) and not lights[index].is_on: return lights[index]
+	return null
 
 func store_waypoints() -> void:
 	waypoints.clear()
@@ -101,7 +101,9 @@ func walk_step(index: int) -> void:
 	await player_tween.finished
 	if index != walk_num: return
 	
-	if should_fail or check_failure(current_step):
+	var failed := check_failure(current_step)
+	if should_fail or failed:
+		if failed: failed.flash_red()
 		start_return_to_bed(index)
 		return
 	
@@ -114,6 +116,7 @@ func walk_step(index: int) -> void:
 
 func start_return_to_bed(index: int) -> void:
 	walk_failed.emit()
+	player_speed = 160.0
 	face_and_move(start_position)
 	await player_tween.finished
 	if index != walk_num: return
@@ -122,6 +125,7 @@ func start_return_to_bed(index: int) -> void:
 	update_animation(false)
 	returned_to_bed.emit()
 	hide()
+	player_speed = 80.0
 
 
 func finish_walk() -> void:

@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://dnx347eg6rm0g" path="res://art/8-Directional Gameboy Character Template/bed_sprite_sheet.png" id="12_kqitr"]
 [ext_resource type="Script" uid="uid://scvq4ptv7gd1" path="res://scripts/desktop.gd" id="14_eamk0"]
 [ext_resource type="Texture2D" uid="uid://6vyebqjelwww" path="res://art/desk_sprite_sheet.png" id="14_ghfhp"]
+[ext_resource type="PackedScene" uid="uid://cjf0rrf4o4npn" path="res://scenes/password_minigame.tscn" id="14_q7byi"]
+[ext_resource type="PackedScene" uid="uid://bpifkqbmbfgm3" path="res://scenes/end_screen.tscn" id="19_31rf2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_li6ia"]
 radius = 8.400009
@@ -27,6 +29,8 @@ colors = PackedColorArray(1, 1, 0.49019608, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tjpqy"]
 gradient = SubResource("Gradient_f1g2u")
+width = 96
+height = 96
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -289,6 +293,7 @@ shadow_color = Color(0, 0, 0, 0.6666667)
 texture = SubResource("GradientTexture2D_tjpqy")
 
 [node name="BigLight3" type="Area2D" parent="Furniture" unique_id=1126274311]
+visible = false
 position = Vector2(40, 600)
 scale = Vector2(5, 5)
 script = ExtResource("3_f1g2u")
@@ -389,10 +394,13 @@ shape = SubResource("RectangleShape2D_fic7a")
 position = Vector2(500, 210)
 scale = Vector2(5, 5)
 script = ExtResource("14_eamk0")
+password_minigame_scnee = ExtResource("14_q7byi")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Furniture/Desktop" unique_id=354542136]
 sprite_frames = SubResource("SpriteFrames_fic7a")
 animation = &"empty"
+
+[node name="MinigameLayer" type="CanvasLayer" parent="Furniture/Desktop" unique_id=117314458]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/Desktop" unique_id=892206988]
 position = Vector2(0, 2.5)
@@ -408,7 +416,7 @@ light_paths = Array[NodePath]([NodePath("../Furniture/BigLight"), NodePath("../F
 waypoints_manager = NodePath("../EscapePath")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=901883157]
-color = Color(0.07762883, 0.07762881, 0.07762881, 1)
+color = Color(0.23826236, 0.23826215, 0.23826224, 1)
 
 [node name="UI" parent="." unique_id=1307178562 node_paths=PackedStringArray("main") instance=ExtResource("4_27vry")]
 main = NodePath("..")
@@ -421,19 +429,26 @@ main = NodePath("..")
 position = Vector2(500, 300)
 
 [node name="Marker2" type="Marker2D" parent="EscapePath" unique_id=1339463377]
-position = Vector2(150, 540)
+position = Vector2(334, 380)
 
 [node name="Marker3" type="Marker2D" parent="EscapePath" unique_id=790136768]
-position = Vector2(280, 540)
+position = Vector2(152, 540)
 
 [node name="Marker4" type="Marker2D" parent="EscapePath" unique_id=979971754]
-position = Vector2(280, 670)
+position = Vector2(288, 662)
 
 [node name="Marker5" type="Marker2D" parent="EscapePath" unique_id=404974656]
-position = Vector2(670, 670)
+position = Vector2(638, 566)
 
 [node name="Marker6" type="Marker2D" parent="EscapePath" unique_id=1960908705]
-position = Vector2(840, 540)
+position = Vector2(928, 556)
 
 [node name="Marker7" type="Marker2D" parent="EscapePath" unique_id=796918213]
 position = Vector2(1060, 600)
+
+[node name="EndScreen" parent="." unique_id=161648729 node_paths=PackedStringArray("main") instance=ExtResource("19_31rf2")]
+offset_left = 500.0
+offset_top = 360.0
+offset_right = 500.0
+offset_bottom = 360.0
+main = NodePath("..")
